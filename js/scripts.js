@@ -3,7 +3,7 @@
 
 
 var monday1 = new JournalEntry(
-  timeDate = '04/15/2000 13:00',
+  n = '04/15/2000 13:00',
   sleep = 8,
   medications = "100mg caffiene, 800mg ibuprofen",
   exercises = "30min walk, 2 miles; lat pulls - 30lb 2 sets of 10",
@@ -12,7 +12,7 @@ var monday1 = new JournalEntry(
   general = "woke up earlier than I wanted to but I feel decently rested"
 )
 var monday2 = new JournalEntry(
-  timeDate = '04/15/2000 13:30',
+  n = '04/15/2000 13:30',
   sleep = 4,
   medications = '',
   exercises = '',
@@ -63,8 +63,8 @@ Journal.prototype.getDate = function(id) {
 
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
-      if (this.journalEntries[i].timeDate) {
-        dates.push(this.journalEntries[i].timeDate);
+      if (this.journalEntries[i].n) {
+        dates.push(n);
 
       }
     }
@@ -102,8 +102,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 chart.render();
 };
 
-function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
-  this.timeDate = timeDate,
+function JournalEntry(n, sleep, medications, exercises, food, drink, general) {
+  this.n = n,
     this.sleep = sleep,
     this.medications = medications,
     this.exercises = exercises,
@@ -120,42 +120,42 @@ function listfilteredEntries(journal, property) {
     var filteredEntries = $("ul#filteredSleepDates");
     journal.journalEntries.forEach(function(journalEntry) {
       if (journalEntry.sleep) {
-        htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.sleep + "</li>";
+        htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + n + " " + journalEntry.sleep + "</li>";
       }
     });
   } else if (property === "medications") {
       var filteredEntries = $("ul#filteredMedicationsDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.medications) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.medications + "</li>";
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + n + " " + journalEntry.medications + "</li>";
         }
       });
   } else if (property === "exercises") {
       var filteredEntries = $("ul#filteredExercisesDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.exercises) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.exercises + "</li>";
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + n + " " + journalEntry.exercises + "</li>";
         }
       });
   } else if (property === "food") {
       var filteredEntries = $("ul#filteredFoodDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.food) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.food + "</li>";
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + n + " " + journalEntry.food + "</li>";
         }
     });
   } else if (property === "drink") {
       var filteredEntries = $("ul#filteredDrinkDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.drink) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.drink + "</li>";
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" +  n + " " + journalEntry.drink + "</li>";
         }
     });
   } else if (property === "general") {
       var filteredEntries = $("ul#filteredGeneralDates");
       journal.journalEntries.forEach(function(journalEntry) {
         if (journalEntry.general) {
-          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + journalEntry.timeDate + " " + journalEntry.general + "</li>";
+          htmlForfilteredEntries += "<li id=" + journalEntry.id + ">" + n + " " + journalEntry.general + "</li>";
         }
       });
   }
@@ -279,6 +279,7 @@ $(document).ready(function() {
     $("#check-buttons").slideUp();
     $("#sleep-table").slideDown();
     $("#dates").slideUp();
+    $("#chartContainer").slideUp();
 
     var property = "sleep";
     listfilteredEntries(journal, property);
@@ -386,5 +387,8 @@ $(document).ready(function() {
     $("#form").slideDown();
   });
 
+  $("#sleep-chart-button").click(function(){
+    $("#chartContainer").slideDown();
+  })
 
 });
