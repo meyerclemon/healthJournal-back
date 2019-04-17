@@ -54,10 +54,10 @@ img {
 ul {
 	list-style-type: none;
 }
-#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates li {
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredDrinkAmountDates, #filteredGeneralDates li {
   color: blue;
 }
-#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates, #filteredGeneralDates li:hover {
+#filteredSleepDates, #filteredMedicationsDates, #filteredExercisesDates, #filteredFoodDates, #filteredDrinkDates,#filteredDrinkAmountDates, #filteredGeneralDates li:hover {
   text-decoration: underline;
   cursor: pointer;
 }

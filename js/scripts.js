@@ -1,6 +1,6 @@
 
 
-var n;
+
 
 var monday1 = new JournalEntry(
   n = '04/15/2000 13:00',
@@ -23,6 +23,7 @@ var monday2 = new JournalEntry(
   general = ''
 )
 // Business logic
+
 function Journal() {
   this.journalEntries = [],
     this.currentId = 0
@@ -60,13 +61,15 @@ Journal.prototype.getSleep = function(id) {
   return sleeps;
 }
 
-Journal.prototype.getDate = function(id) {
+Journal.prototype.showDate = function(id) {
   var dates=[];
 
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
       if (this.journalEntries[i].n) {
+
         dates.push(this.journalEntries[i].n);
+
 
       }
     }
@@ -74,10 +77,11 @@ Journal.prototype.getDate = function(id) {
   return dates;
 }
 
+
 function sleepChart(){
     var slp =[];
   var sleeps = journal.getSleep();
-  var dates = journal.getDate();
+  var dates = journal.showDate();
 
   for(var i=0; i<sleeps.length; i++){
     slp.push({
@@ -123,7 +127,7 @@ Journal.prototype.getDrink = function(id) {
 function drinkChart(){
     var drk =[];
   var drinks = journal.getDrink();
-  var dates = journal.getDate();
+  var dates = journal.showDate();
 
   for(var i=0; i<drink.length; i++){
     drk.push({
