@@ -1,24 +1,42 @@
-        // give $().bootstrapBtn the Bootstrap functionality
-
+//Sample data to prepopulate and present
 var monday1 = new JournalEntry(
-  n = '04/15/2000 13:00',
+  timeDate = '04/15/2019 08:00',
   sleep = 8,
-  medications = "100mg caffiene, 800mg ibuprofen",
+  medications = "multi-vitamin, vitamin b, fish oil/vitamin",
+  exercises = "cervical traction, shoulder press, upper trap stretch",
+  food = "oatmeal with cranberries and pecans",
+  drink = "12oz water",
+  general = "woke up earlier than I wanted but am feeling generally well rested"
+)
+
+var monday2 = new JournalEntry(
+  timeDate = '04/15/2019 13:00',
+  sleep = '',
+  medications = "100mg caffeine, 800mg ibuprofen, 15 mg adderall",
   exercises = "30min walk, 2 miles; lat pulls - 30lb 2 sets of 10",
   food = "chicken with rice, beans, guacamole, and lettuce",
   drink = "12oz orange san pelligrino",
-  drinkAmount = 128,
-  general = "woke up earlier than I wanted to but I feel decently rested"
+  general = ""
 )
-var monday2 = new JournalEntry(
-  n = '04/16/2000 13:30',
-  sleep = 4,
-  medications = '',
-  exercises = '',
-  food = "oatmeal with cranberries and pecans",
-  drink = "12oz water",
-  drinkAmount = 64,
-  general = ''
+
+var monday3 = new JournalEntry(
+  timeDate = '04/15/2019 19:00',
+  sleep = '',
+  medications = "60mg Latuda, Claritin, multi-vitamin, vitamin b, fish oil/vitamin",
+  exercises = "ankles w/ resistance band",
+  food = "roast beef, carrots, potatoes, and snow peas",
+  drink = "12oz orange san pelligrino",
+  general = "energy very low this evening"
+)
+
+var tuesday1 = new JournalEntry(
+  timeDate = "04/16/2019 08:00",
+  sleep = 7,
+  medications = "Wellbutrin, Celexa, Zyrtec",
+  exercises = "cervical/shoulder stretches, 20 minute walk",
+  food = "breakfast sandwich: 1 egg, english muffin, 1 strip bacon",
+  drink = "16oz water",
+  general = "Still recovering from illness but feeling much better"
 )
 // Business logic
 
@@ -35,10 +53,8 @@ Journal.prototype.assignId = function() {
   return this.currentId;
 }
 Journal.prototype.findJournalEntry = function(id) {
-  //console.log(this.journalEntries.length);
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
-      //console.log(this.journalEntries[i].id, id);
       if (this.journalEntries[i].id == parseInt(id)) {
         return this.journalEntries[i];
       }
@@ -46,6 +62,7 @@ Journal.prototype.findJournalEntry = function(id) {
   }
   return false;
 }
+
 Journal.prototype.getSleep = function(id) {
   var sleeps=[];
 
@@ -155,6 +172,63 @@ chart.render();
 
 function JournalEntry(n, sleep, medications, exercises, food, drink, drinkAmount, general) {
   this.n = n,
+// NEW CODE from the other branch
+Journal.prototype.editJournalEntry = function(id, sleep, medications, exercises, food, drink, general) {
+  for (var i = 0; i < this.journalEntries.length; i++) {
+    if (this.journalEntries[i]) {
+      if (this.journalEntries[i].id == parseInt(id)) {
+        this.journalEntries[i].sleep = sleep;
+        this.journalEntries[i].medications = medications;
+        this.journalEntries[i].exercises = exercises;
+        this.journalEntries[i].food = food;
+        this.journalEntries[i].drink = drink;
+        this.journalEntries[i].general = general;
+      }
+    }
+  }
+}
+// Journal.prototype.findJournalEntry = function(id) {
+//   var sleeps=[];
+//   for (var i = 0; i < this.journalEntries.length; i++) {
+//     if (this.journalEntries[i]) {
+//       if (this.journalEntries[i].sleep) {
+//         sleeps.push(this.journalEntries[i]);
+//       }
+//     }
+//   }
+//   return sleeps;
+// }
+//
+// function sleepChart(){
+//   var sleeps = journal.findJournalEntry();
+//   var slp =[];
+//   for(var i=0; i<sleeps.length; i++){
+//     slp.push({
+//       y: sleeps[i]
+//     });
+//   }
+//
+//
+// var chart = new CanvasJS.Chart("chartContainer", {
+// 	animationEnabled: true,
+// 	theme: "light2",
+// 	title:{
+// 		text: "Sleep Chart"
+// 	},
+// 	axisY:{
+// 		includeZero: false
+// 	},
+// 	data: [{
+// 		type: "line",
+// 		dataPoints:  slp
+// 	}]
+// });
+// chart.render();
+// };
+
+function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
+  this.timeDate = timeDate,
+
     this.sleep = sleep,
     this.medications = medications,
     this.exercises = exercises,
@@ -280,7 +354,6 @@ function listfilteredEntries(journal, property) {
 
 function attachSleepListeners() {
   $("#filteredSleepDates").on("click", "div", function() {
-  // $("#filteredSleepDates").on("click", "li", function() {
     showEntry(this.id);
     $("#sleep-back-button").hide();
   });
@@ -345,6 +418,7 @@ var journal = new Journal();
 
 function showEntry(entryId) {
   var entry = journal.findJournalEntry(entryId);
+  $("#editId").html(entryId);
   $("#show-template").show();
   $(".sleep").html(entry.sleep);
   $(".medications").html(entry.medications);
@@ -353,9 +427,40 @@ function showEntry(entryId) {
   $(".drink").html(entry.drink);
   $(".drink-amount").html(entry.drinkAmount);
   $(".general").html(entry.general);
+  // var buttons = $("#editEntry");
+  // buttons.empty();
+  // buttons.append("<button class='btn-lg btn-danger editButton' id=" + entry.id + ">Save Changes</button>");
 }
 
+function clearFields(){
+  $("input#sleep").val("");
+  $("textarea#medications").val("");
+  $("input#food").val("");
+  $("input#drink").val("");
+  $("textarea#notes").val("");
+}
 
+function getDateTime() {
+  var date = new Date();
+  var month = (date.getMonth() + 1).toString();
+  var day =  date.getDate().toString();
+  var hour = date.getHours().toString();
+  var minutes = date.getMinutes().toString();
+  if (month.length === 1) {
+    month = '0' + month;
+  }
+  if (day.length === 1) {
+    day = '0' + day;
+  }
+  if (hour.length === 1) {
+    hour = '0' + hour;
+  }
+  if (minutes.length === 1) {
+    day = '0' + minutes;
+  }
+  var timeDate = month + '/' + day + '/' + date.getFullYear() + ' ' + hour + ":" + minutes;
+  return timeDate;
+}
 
 
 $(document).ready(function() {
@@ -368,9 +473,16 @@ $(document).ready(function() {
   attachDrinkAmountListeners();
   attachGeneralListeners();
 
-
+  // Add sample data included above
   journal.addJournalEntry(monday1);
   journal.addJournalEntry(monday2);
+  journal.addJournalEntry(monday3);
+  journal.addJournalEntry(tuesday1);
+
+  $("#all-dates").append("<li id=" + monday1.id + ">" + monday1.timeDate + "</li>");
+  $("#all-dates").append("<li id=" + monday2.id + ">" + monday2.timeDate + "</li>");
+  $("#all-dates").append("<li id=" + monday3.id + ">" + monday3.timeDate + "</li>");
+  $("#all-dates").append("<li id=" + tuesday1.id + ">" + tuesday1.timeDate + "</li>");
 
   $("form#formOne").submit(function(event) {
     event.preventDefault();
@@ -382,12 +494,21 @@ $(document).ready(function() {
     var drink = $("input#drink").val();
     var drinkAmount =parseInt($("input#drink-amount").val());
     var notes = $("textarea#notes").val();
+// CONVERT TO THE NEW BRANCH
     var date = new Date();
     var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ":" + date.getMinutes();
     var newEntry = new JournalEntry(n, sleep, medications, exercise, food, drink, drinkAmount, notes);
+// END convert
+    // var date = new Date();
+    // var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + date.getMinutes();
+    var date = getDateTime();
+    var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, notes);
+// End NEW branch
 
     journal.addJournalEntry(newEntry);
-    $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li>");
+    $("#all-dates").append("<li id=" + newEntry.id + ">" + date + "</li>");
+
+    clearFields();
 
   });
 
@@ -523,6 +644,7 @@ $(document).ready(function() {
     $("#form").slideDown();
   });
 
+
   $("#sleep-chart-button").click(function(){
     $("#chartContainer").slideDown();
   })
@@ -536,4 +658,15 @@ $(".everything").slideDown();
 $("#carouselExampleIndicators").slideUp();
 
   });
+
+  $("#editEntry").click(function() {
+      var id = $("#editId").html();
+      var sleep = $("#editSleep").html();
+      var medications = $("#editMeds").html();
+      var exercises = $("#editExercises").html();
+      var food = $("#editFood").html();
+      var drink = $("#editDrink").html();
+      var general = $("#editGeneral").html();
+      journal.editJournalEntry(id, sleep, medications, exercises, food, drink, general);
+    });
 });

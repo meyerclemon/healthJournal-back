@@ -10,16 +10,24 @@
 h1{
   text-align: center;
 }
+#editEntry {
+  float: right;
+}
 
 .row{
   margin: 0 auto;
   margin-right: -8%;
 }
-
+#hideId {
+  display: none;
+}
 #sleep {
   width: 100px;
 }
-
+.contenteditable {
+  cursor: pointer;
+  background-color: azure;
+}
 img {
   width: 50px;
   height: auto;
