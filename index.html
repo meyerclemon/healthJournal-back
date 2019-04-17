@@ -68,6 +68,11 @@
                 <label for="drink">Drink</label><img src="img/drink.svg">
                 <input class="form-control" type="text" id="drink">
               </div>
+
+              <div class="form-group">
+                <label for="drink-amount">Drink amount</label><img src="img/sleep-icon.svg">
+                <input class="form-control" type="number" id="drink-amount">
+              </div>
               <div class="form-group">
                 <label for="notes">Notes</label><img src="img/notes-icon.svg">
                 <textarea class="form-control" id="notes" rows="3"></textarea>
@@ -88,6 +93,7 @@
             <button id="exercise-button" type="button" class="btn btn-light  text-black btn-sm btn-block">Exercise Table</button>
             <button id="food-button" type="button" class="btn btn-light text-black btn-sm btn-block">Food Table</button>
             <button id="drink-button" type="button" class="btn btn-light text-black  btn-sm btn-block">Drink Table</button>
+            <button id="drink-amount-button" type="button" class="btn btn-light text-black btn-sm btn-block">Drink Amount Table</button>
             <button id="notes-button" type="button" class="btn btn-light text-black btn-sm btn-block">Notes Table</button>
           </div>
 
@@ -203,6 +209,25 @@
       </div>
     </div>
   </div>
+  <div id="drink-amount-table">
+    <div class="row" id="drink-amount-table-row">
+      <div class="col-md-9">
+        <div class="card card-info">
+          <div class="card-header bg-secondary">
+            Drink Amount Table
+          </div>
+          <div class="card-body">
+            <ul id="filteredDrinkAmountDates"></ul>
+            <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button id="drink-amount-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button><br><br>
+        <button id="drink-amount-chart-button" class="btn-lg btn-success back-button-class" type="button" name="button">Drink Chart</button>
+      </div>
+    </div>
+  </div>
   <div id="notes-table">
     <div class="row" id="notes-table-row">
       <div class="col-md-9">
@@ -233,6 +258,7 @@
             <p>Exercises: <span class="exercises"></span></p>
             <p>Food: <span class="food"></span></p>
             <p>Beverages: <span class="drink"></span></p>
+            <p>Drink Amount: <span class="drink-amount"></span>mL</p>
             <p>Notes: <span class="general"></span></p>
           </div>
         </div>

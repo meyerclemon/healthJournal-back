@@ -77,7 +77,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-#medication-table, #sleep-table, #exercise-table, #food-table, #drink-table, #notes-table{
+#medication-table, #sleep-table, #exercise-table, #food-table, #drink-table, #notes-table, #drink-amount-table{
   display: none;
 }
 
