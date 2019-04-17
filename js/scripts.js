@@ -280,8 +280,10 @@ $(document).ready(function() {
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li>");
 
+    function greetingMessage(n) {
+      if (date.getHours() > 0 && date.getHours < 11)
+    }
 
-    
 
   });
 
