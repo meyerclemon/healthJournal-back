@@ -46,22 +46,41 @@ Journal.prototype.findJournalEntry = function(id) {
 }
 Journal.prototype.getSleep = function(id) {
   var sleeps=[];
+
   for (var i = 0; i < this.journalEntries.length; i++) {
     if (this.journalEntries[i]) {
       if (this.journalEntries[i].sleep) {
-        sleeps.push(this.journalEntries[i]);
+        sleeps.push(this.journalEntries[i].sleep);
+
       }
     }
   }
   return sleeps;
 }
 
+Journal.prototype.getDate = function(id) {
+  var dates=[];
+
+  for (var i = 0; i < this.journalEntries.length; i++) {
+    if (this.journalEntries[i]) {
+      if (this.journalEntries[i].timeDate) {
+        dates.push(this.journalEntries[i].timeDate);
+
+      }
+    }
+  }
+  return dates;
+}
+
 function sleepChart(){
+    var slp =[];
   var sleeps = journal.getSleep();
-  var slp =[];
+  var dates = journal.getDate();
+
   for(var i=0; i<sleeps.length; i++){
     slp.push({
-      y: sleeps[i]
+      y: sleeps[i],
+      label: dates[i]
     });
   }
 
@@ -77,7 +96,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "line",
-		dataPoints:  slp
+		dataPoints: slp
 	}]
 });
 chart.render();
