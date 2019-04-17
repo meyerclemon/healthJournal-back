@@ -3,14 +3,14 @@
 
 <head>
   <meta charset="utf-8">
-
+  <script src="js/jquery-3.4.0.js"></script>
+  <script src="js/scripts.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/jquery-3.4.0.js"></script>
-  <script src="js/scripts.js"></script>
+
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
 
   <title>Health Journal</title>
@@ -38,6 +38,48 @@
         <div class="heart">
         </div>
       </div>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data -target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img id="welcome-picture"  class="d-block w-100" src="img/welcome.png" alt="First slide">
+        </div>
+        <div class="carousel-item">
+        <div class="card card-info">
+          <div id="second-slide"class="card-body bg-secondary">
+            Learn more
+
+          </div>
+
+        </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card card-info">
+            <div id="third-slide"class="card-body bg-secondary">
+
+              Learn more
+<button id="lets-start" type="button" name="button">Lets's start</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+      <div class="everything">
 
 
     <div class="row">
@@ -270,7 +312,7 @@
 
 
 
-
+  </div>
   </div>
 </body>
 

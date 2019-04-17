@@ -1,6 +1,4 @@
-
-
-
+        // give $().bootstrapBtn the Bootstrap functionality
 
 var monday1 = new JournalEntry(
   n = '04/15/2000 13:00',
@@ -132,7 +130,7 @@ function drinkChart(){
   for(var i=0; i<drink.length; i++){
     drk.push({
       y: drinks[i],
-      label: dates[i]
+      label: n
     });
   }
 
@@ -330,8 +328,8 @@ $(document).ready(function() {
     var drinkAmount =parseInt($("input#drink-amount").val());
     var notes = $("textarea#notes").val();
     var date = new Date();
-    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + date.getMinutes();
-    var newEntry = new JournalEntry(date, sleep, medications, exercise, food, drink, drinkAmount, notes);
+    var n = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' + date.getHours() + ":" + date.getMinutes();
+    var newEntry = new JournalEntry(n, sleep, medications, exercise, food, drink, drinkAmount, notes);
 
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
@@ -477,4 +475,10 @@ $(document).ready(function() {
   $("#drink-amount-chart-button").click(function(){
     $("#chartContainer1").slideDown();
   })
+  $("#lets-start").click(function(){
+    alert("hi");
+$(".everything").slideDown();
+$("#carouselExampleIndicators").slideUp();
+
+  });
 });
