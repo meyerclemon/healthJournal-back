@@ -44,44 +44,44 @@ Journal.prototype.findJournalEntry = function(id) {
   }
   return false;
 }
-// Journal.prototype.findJournalEntry = function(id) {
-//   var sleeps=[];
-//   for (var i = 0; i < this.journalEntries.length; i++) {
-//     if (this.journalEntries[i]) {
-//       if (this.journalEntries[i].sleep) {
-//         sleeps.push(this.journalEntries[i]);
-//       }
-//     }
-//   }
-//   return sleeps;
-// }
-//
-// function sleepChart(){
-//   var sleeps = journal.findJournalEntry();
-//   var slp =[];
-//   for(var i=0; i<sleeps.length; i++){
-//     slp.push({
-//       y: sleeps[i]
-//     });
-//   }
-//
-//
-// var chart = new CanvasJS.Chart("chartContainer", {
-// 	animationEnabled: true,
-// 	theme: "light2",
-// 	title:{
-// 		text: "Sleep Chart"
-// 	},
-// 	axisY:{
-// 		includeZero: false
-// 	},
-// 	data: [{
-// 		type: "line",
-// 		dataPoints:  slp
-// 	}]
-// });
-// chart.render();
-// };
+Journal.prototype.getSleep = function(id) {
+  var sleeps=[];
+  for (var i = 0; i < this.journalEntries.length; i++) {
+    if (this.journalEntries[i]) {
+      if (this.journalEntries[i].sleep) {
+        sleeps.push(this.journalEntries[i]);
+      }
+    }
+  }
+  return sleeps;
+}
+
+function sleepChart(){
+  var sleeps = journal.getSleep();
+  var slp =[];
+  for(var i=0; i<sleeps.length; i++){
+    slp.push({
+      y: sleeps[i]
+    });
+  }
+
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Sleep Chart"
+	},
+	axisY:{
+		includeZero: false
+	},
+	data: [{
+		type: "line",
+		dataPoints:  slp
+	}]
+});
+chart.render();
+};
 
 function JournalEntry(timeDate, sleep, medications, exercises, food, drink, general) {
   this.timeDate = timeDate,
@@ -235,7 +235,7 @@ $(document).ready(function() {
   $("form#formOne").submit(function(event) {
     event.preventDefault();
 
-    var sleep = $("input#sleep").val();
+    var sleep = parseInt($("input#sleep").val());
     var medications = $("textarea#medications").val();
     var exercise = $("textarea#exercise").val();
     var food = $("input#food").val();
@@ -248,9 +248,9 @@ $(document).ready(function() {
     journal.addJournalEntry(newEntry);
     $("#all-dates").append("<li id=" + newEntry.id + ">" + n + "</li> <br>");
 
-    function greetingMessage(n) {
-      if (date.getHours() > 0 && date.getHours < 11)
-    }
+    // function greetingMessage(n) {
+    //   if (date.getHours() > 0 && date.getHours < 11)
+    // }
 
 
   });
@@ -264,7 +264,7 @@ $(document).ready(function() {
     var property = "sleep";
     listfilteredEntries(journal, property);
     $("#sleep-table-row").show();
-    // sleepChart();
+    sleepChart();
 
   });
   $("#sleep-back-button").click(function(){
