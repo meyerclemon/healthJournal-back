@@ -3,18 +3,19 @@
 
 <head>
   <meta charset="utf-8">
-
+  <script src="js/jquery-3.4.0.js"></script>
+  <script src="js/scripts.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/jquery-3.4.0.js"></script>
-  <script src="js/scripts.js"></script>
+
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
 
   <title>Health Journal</title>
 </head>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" relative="stylesheet">
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" relative="stylesheet"> -->
 
 <body>
   <div class="container">
@@ -23,17 +24,63 @@
 
 
       <h1>Health Journal </h1>
-      <div class="heart_img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH9AvU2jt3jAVK90LFSayYrHnC_XrC1JnrpHoOND1kAXfVYDxA-Q" alt="heaert">
-        </div>
-
-
-
-
-</div>
       <div class="center">
-        <div class="heart"></div>
+        <div class="heart">
+        </div>
       </div>
+
+
+
+
     </div>
+
+      <div class="center">
+        <div class="heart">
+        </div>
+      </div>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data -target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img id="welcome-picture"  class="d-block w-100" src="img/welcome.png" alt="First slide">
+        </div>
+        <div class="carousel-item">
+        <div class="card card-info">
+          <div id="second-slide"class="card-body bg-secondary">
+            Learn more
+
+          </div>
+
+        </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card card-info">
+            <div id="third-slide"class="card-body bg-secondary">
+
+              Learn more
+<button id="lets-start" type="button" name="button">Lets's start</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+      <div class="everything">
+
 
     <div class="row">
       <div id="form" class="col-md-6">
@@ -66,6 +113,11 @@
                 <label for="drink">Drink</label><img src="img/drink.svg">
                 <input class="form-control" type="text" id="drink">
               </div>
+
+              <div class="form-group">
+                <label for="drink-amount">Drink amount</label><img src="img/amount-icon.svg">
+                <input class="form-control" type="number" id="drink-amount">
+              </div>
               <div class="form-group">
                 <label for="notes">Notes</label><img src="img/notes-icon.svg">
                 <textarea class="form-control" id="notes" rows="3"></textarea>
@@ -86,12 +138,11 @@
             <button id="exercise-button" type="button" class="btn btn-light  text-black btn-sm btn-block">Exercise Table</button>
             <button id="food-button" type="button" class="btn btn-light text-black btn-sm btn-block">Food Table</button>
             <button id="drink-button" type="button" class="btn btn-light text-black  btn-sm btn-block">Drink Table</button>
+            <button id="drink-amount-button" type="button" class="btn btn-light text-black btn-sm btn-block">Drink Amount</button>
             <button id="notes-button" type="button" class="btn btn-light text-black btn-sm btn-block">Notes Table</button>
           </div>
-
         </div>
       </div>
-
       <div id="dates" class="col-md-3">
         <div class="card card-info">
           <div class="card-header bg-secondary text-white">
@@ -107,9 +158,7 @@
           </div>
         </div>
       </div>
-
-  </div>
-  </div>
+    </div>
   <div id="sleep-table">
     <div class="row" id="sleep-table-row">
       <div class="col-md-9">
@@ -118,14 +167,21 @@
             Sleep table
           </div>
           <div class="card-body">
+
             <!-- <table id="filteredSleepDates"></table> -->
             <div id="filteredSleepDates"></div>
 
+          <div id="chartContainer" style="height: 300px; width: 100%;">
           </div>
+          </div>
+          <ul id="filteredSleepDates">
+          </ul>
         </div>
-      </div>
-      <div class="col-md-3">
-        <button id="sleep-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button>
+        </div>
+        <div class="col-md-3">
+          <button id="sleep-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button><br><br>
+          <button id="sleep-chart-button" class="btn-lg btn-success back-button-class" type="button" name="button">Sleep Chart</button>
+        </div>
       </div>
     </div>
   </div>
@@ -140,12 +196,11 @@
             <div id="filteredMedicationsDates"></div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <button id="medication-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button>
+        <div class="col-md-3">
+          <button id="medication-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button>
+        </div>
       </div>
     </div>
-  </div>
   <div id="exercise-table">
     <div class="row" id="exercise-table-row">
       <div class="col-md-9">
@@ -197,6 +252,26 @@
       </div>
     </div>
   </div>
+  <div id="drink-amount-table">
+    <div class="row" id="drink-amount-table-row">
+      <div class="col-md-9">
+        <div class="card card-info">
+          <div class="card-header bg-secondary">
+            Drink Amount Table
+          </div>
+          <div class="card-body">
+
+            <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+              <ul id="filteredDrinkAmountDates"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button id="drink-amount-back-button" class="btn-lg btn-danger back-button-class" type="button" name="button">Back</button><br><br>
+        <button id="drink-amount-chart-button" class="btn-lg btn-success back-button-class" type="button" name="button">Drink Chart</button>
+      </div>
+    </div>
+  </div>
   <div id="notes-table">
     <div class="row" id="notes-table-row">
       <div class="col-md-9">
@@ -227,6 +302,7 @@
             <p>Exercises: <span class="exercises"></span></p>
             <p>Food: <span class="food"></span></p>
             <p>Beverages: <span class="drink"></span></p>
+            <p>Drink Amount: <span class="drink-amount"></span>mL</p>
             <p>Notes: <span class="general"></span></p>
           </div>
         </div>
@@ -240,10 +316,7 @@
 
 
 
-
-
-
-
+  </div>
   </div>
 </body>
 
